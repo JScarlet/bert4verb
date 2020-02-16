@@ -44,7 +44,7 @@ if __name__ == '__main__':
         is_fp16=True,  # cpu上训练应该设为False
         multi_label=False,
         logging_steps=50)
-    learner.fit(epochs=5,
+    learner.fit(epochs=20,
                 lr=6e-5,
                 validate=True,  # Evaluate the model after each epoch
                 schedule_type="warmup_cosine",
