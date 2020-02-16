@@ -22,9 +22,9 @@ if __name__ == '__main__':
         lines = f.readlines()
     for line in lines:
         line = line.replace('\n', '')
-        line.split(',')
-        annotation_type = line[-1]
-        sentence = ','.join(line[1:-1])
+        item_list = line.split(',')
+        annotation_type = item_list[-1]
+        sentence = ','.join(item_list[1:-1])
         test_data_list.append(sentence)
         test_label_list.append(annotation_type)
     multiple_predictions = predictor.predict_batch(test_data_list)
