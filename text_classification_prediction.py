@@ -13,7 +13,7 @@ if __name__ == '__main__':
         label_path=label_dir,  # location for labels.csv file
         multi_label=False,
         model_type='bert',
-        do_lower_case=False)
+        do_lower_case=True)
 
     test_filename = Path(ROOT_DIR) / 'data' / 'train.csv'
     test_data_list = []
