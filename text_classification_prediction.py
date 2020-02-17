@@ -15,7 +15,7 @@ if __name__ == '__main__':
         model_type='bert',
         do_lower_case=True)
 
-    test_filename = Path(ROOT_DIR) / 'data' / 'train.csv'
+    test_filename = Path(ROOT_DIR) / 'data' / 'test.csv'
     test_data_list = []
     test_label_list = []
     with open(test_filename, 'r') as f:
@@ -24,7 +24,7 @@ if __name__ == '__main__':
         line = line.replace('\n', '')
         item_list = line.split(',')
         annotation_type = item_list[-1]
-        sentence = ','.join(item_list[1:-1])
+        sentence = ','.join(item_list[:-1])
         test_data_list.append(sentence)
         test_label_list.append(annotation_type)
     multiple_predictions = predictor.predict_batch(test_data_list)
