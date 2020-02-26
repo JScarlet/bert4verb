@@ -16,7 +16,7 @@ if __name__ == '__main__':
             model_type='bert',
             do_lower_case=True)
 
-        test_filename = Path(ROOT_DIR) / ('data' + str(i)) / 'test.csv'
+        test_filename = Path(ROOT_DIR) / ('data' + str(i)) / 'final_test.csv'
         test_data_list = []
         test_label_list = []
         with open(test_filename, 'r') as f:
