@@ -19,7 +19,7 @@ if __name__ == '__main__':
                                   label_file='labels.csv',
                                   text_col='text',
                                   label_col='label',
-                                  batch_size_per_gpu=8,
+                                  batch_size_per_gpu=16,
                                   max_seq_length=512,
                                   multi_gpu=True,
                                   multi_label=False,
