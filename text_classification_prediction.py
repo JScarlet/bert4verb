@@ -6,7 +6,7 @@ from fast_bert.prediction import BertClassificationPredictor
 from definitions import ROOT_DIR
 
 if __name__ == '__main__':
-    for i in range(3, 5):
+    for i in range(0, 3):
         model_dir = ROOT_DIR + '/model_output' + str(i) + '/model_out'
         label_dir = ROOT_DIR + '/data' + str(i)
         predictor = BertClassificationPredictor(

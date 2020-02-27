@@ -9,7 +9,7 @@ from fast_bert.learner_cls import BertLearner
 from definitions import ROOT_DIR
 
 if __name__ == '__main__':
-    for i in range(3, 10):
+    for i in range(0, 3):
         data_dir = Path(ROOT_DIR) / ('data' + str(i))
         label_dir = Path(ROOT_DIR) / ('data' + str(i))
         databunch = BertDataBunch(data_dir, label_dir,
