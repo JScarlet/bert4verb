@@ -10,8 +10,11 @@ from definitions import ROOT_DIR
 
 if __name__ == '__main__':
     for i in range(0, 3):
-        data_dir = Path(ROOT_DIR) / ('data' + str(i))
-        label_dir = Path(ROOT_DIR) / ('data' + str(i))
+        lr_list = [6e-5, 6e-4, 6e-3]
+    #     data_dir = Path(ROOT_DIR) / ('data' + str(i))
+        data_dir = Path(ROOT_DIR) / ('data')
+        # label_dir = Path(ROOT_DIR) / ('data' + str(i))
+        label_dir = Path(ROOT_DIR) / ('data')
         databunch = BertDataBunch(data_dir, label_dir,
                                   tokenizer='bert-base-uncased',
                                   train_file='train.csv',
@@ -29,7 +32,8 @@ if __name__ == '__main__':
         device = torch.device('cuda') if torch.cuda.device_count() else torch.device('cpu')
         metrics = [{'name': 'accuracy', 'function': accuracy}]
 
-        output_dir = Path(ROOT_DIR) / ("model_output" + str(i)) / ""
+        output_dir = Path(ROOT_DIR) / ("model_output" + str(i) * 3) / ""
+        # output_dir = Path(ROOT_DIR) / ("model_output") / ""
         output_dir.mkdir(parents=True, exist_ok=True)
         # BertLearner可以实现训练，验证，测试
         learner = BertLearner.from_pretrained_model(
@@ -46,7 +50,7 @@ if __name__ == '__main__':
             multi_label=False,
             logging_steps=50)
         learner.fit(epochs=25,
-                    lr=6e-5,
+                    lr=lr_list[i],
                     validate=True,  # Evaluate the model after each epoch
                     schedule_type="warmup_cosine",
                     optimizer_type="lamb")  # lamb,adamw

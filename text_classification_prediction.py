@@ -7,8 +7,10 @@ from definitions import ROOT_DIR
 
 if __name__ == '__main__':
     for i in range(0, 3):
-        model_dir = ROOT_DIR + '/model_output' + str(i) + '/model_out'
-        label_dir = ROOT_DIR + '/data' + str(i)
+        model_dir = ROOT_DIR + '/model_output' + str(i) * 3 + '/model_out'
+        # model_dir = ROOT_DIR + '/model_output' + '/model_out'
+        # label_dir = ROOT_DIR + '/data' + str(i)
+        label_dir = ROOT_DIR + '/data'
         predictor = BertClassificationPredictor(
             model_path=model_dir,
             label_path=label_dir,  # location for labels.csv file
@@ -16,7 +18,8 @@ if __name__ == '__main__':
             model_type='bert',
             do_lower_case=True)
 
-        test_filename = Path(ROOT_DIR) / ('data' + str(i)) / 'final_test.csv'
+        # test_filename = Path(ROOT_DIR) / ('data' + str(i)) / 'final_test.csv'
+        test_filename = Path(ROOT_DIR) / ('data') / 'final_test.csv'
         test_data_list = []
         test_label_list = []
         with open(test_filename, 'r') as f:
@@ -31,6 +34,7 @@ if __name__ == '__main__':
         multiple_predictions = predictor.predict_batch(test_data_list)
         print(multiple_predictions)
 
-        filename = 'predictions' + str(i) + '.json'
+        filename = 'predictions' + str(i) * 3 + '.json'
+        # filename = 'predictions' + '.json'
         with open(filename, 'w') as f:
             json.dump(multiple_predictions, f)
